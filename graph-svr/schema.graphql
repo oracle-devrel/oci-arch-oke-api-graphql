@@ -1,0 +1,163 @@
+"""
+Copyright(c) 2022, Oracle and / or its affiliates.
+    All rights reserved. The Universal Permissive License(UPL), Version 1.0 as shown at http: // oss.oracle.com/licenses/upl
+
+    A naming convention adopted is entity name either followed by Type or Input. The Input definitions are 
+    subset of the Type definition and the element names match unless a comment indicates otherwise e.g.
+    EventInput is based on Event
+    Enumerations follow the Type or Input used
+
+    The queries and mutators are defined at the end of the schema
+"""
+ 
+# Defines the location or Geometry of the event based upon geojson.org 
+  type Geometry { 
+    geoType: GeometryEnum!
+    coordinates: [String]!
+  }
+
+  """ geojson.org defines this structure  """
+  input GeometryInput {
+    geoType: GeometryEnum!
+    coordinates: [String]!
+  }
+
+  """ defines the different types of Geometry being defined. The enum will dictate the number and meaning
+   of the coordinates data """
+  enum GeometryEnum {
+    POINT
+    MULTIPOINT
+    LINE
+    MULTILINE
+    POLYGON
+    MULTIPOLYGON
+    GEOMETRYCOLLECTION
+  }
+
+  type Event  {
+    magnitude: String    # string as we cant define a decimal
+    place: String        # Nearest city or Flinn-Engdahl (F-E) location definition
+    time: String         # Recorded date and time for the event in form of Time in d/m/y h:m:s format
+    updated : String     # Time in d/m/y h:m:s format
+    tz : Int             # TimeZone offset from UTC [-1200, +1200]
+    url:String           # link to the USGS event record
+    detail:String
+    felt:Int             # count of the number of reported incidents
+    cdi:Float            # Decimal value 0-10 reporting the event intensity
+    mmi:String           # maximum instrumental intensity
+    alert:String         # Alert level https://earthquake.usgs.gov/data/pager/
+    status:String 
+    tsunami:Boolean      # USGS treats this as a numeric 0 or 1
+    sig:Int              # Event significance 0-1000
+    net:Provider         # ID of a data contributor. Identifies the network considered to be the preferred source of information
+    code:String          # Unique identified from the event detection source(s)
+    ids:String
+    sources:String       # codes for a comma separated list of providers
+    providers : [Provider] # provider details based on the sources
+    types:String         # A comma-separated list of product types associated to this event
+    nst:Int              # count of the number of locations used to calculate the magnitude of an earthquake
+    dmin:Float           # Horizontal distance from the epicenter to the nearest station (in degrees). 1 degree is approximately 111.2 kilometers
+    rms:String           # root-mean-square (RMS) travel time residual, in sec
+    gap:Float            # largest azimuthal gap between azimuthally adjacent stations (in degrees).
+    magType:MagEnum      # The method or algorithm used to calculate the preferred magnitude for the event
+    eventType:String     # Type of event e.g. Earthquake, Quarry etc
+    title:String
+    geometry:Geometry
+    id:String!
+  }
+
+  # where the values is not explained it is a direct correlation to EventType
+    input EventInput { 
+    magnitude: String
+    place: String
+    time: Int            # treated as either the creation time for a new record or the update time
+    tz : Int    
+    url:String          
+    detail:String
+    felt:Int             
+    cdi:Float           
+    mmi:String     
+    alert:String     
+    status:String 
+    tsunami:Boolean  
+    sig:Int       
+    code:String          # Provider short code as the Id Unique identified from the event detection source(s)
+    types:String      
+    nst:Int   
+    dmin:Float          
+    rms:String          
+    gap:Float         
+    magType:MagEnum   
+    eventType:String          
+    title:String
+    geometry:GeometryInput
+    id:String               # Without this the record is assumed to be a creation
+  }
+
+  type Provider {
+    code: String!      # USGS provided short code
+    name:String        # Full name of the information provider
+    alias:[String]      # exists IF there are alternate / alias codes for this provider
+  }
+
+  input ProviderInput {
+    code: String!
+    name:String
+    alias:[String]
+  }
+
+
+
+  # https://www.usgs.gov/programs/earthquake-hazards/magnitude-types
+  enum MagEnum {
+    MWW
+    MWC
+    MWB
+    MWR
+    MS
+    MS20
+    MB
+    MFA
+    ML
+    MB_LG
+    MLG
+    MD
+    MI
+    MWP
+    ME
+    MH
+    FFM # aka Finite Fault
+    MINT
+  }
+
+  type Query {
+    event(id:String):Event
+
+    "query to return the events found that match the query criteria"
+    events(tsunami:Boolean 
+            alert:String 
+            status:String
+            eventType:String
+            minTime:Int
+            maxTime:Int
+            minMag:Float
+            maxMag:Float
+            nameContains:String):[Event]
+
+
+    "Returns the latest known event"
+    latestEvent :Event
+    help: String
+ 
+    provider(code:String):Provider
+    findProvider(code:String
+              alias:String
+              name: String):[Provider]
+  }
+
+ type Mutation {
+    changeEvent (event:EventInput) :Event
+    deleteEvent(id:String) : Int  # as we're deleting, a successful delete will return a record count
+ 
+    deleteProvider (code:String) : Int # return of a remaining record count
+  }
