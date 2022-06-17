@@ -1,0 +1,38 @@
+{
+  "type":"Feature",
+  "properties":
+  {
+    "mag":1.72,
+    "place":"4km E of Truckee, CA",
+    "time":1650981595490,
+    "updated":1650982030072,
+    "tz":null,
+    "url":"https://earthquake.usgs.gov/earthquakes/eventpage/nc73723715",
+    "detail":"https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/nc73723715.geojson",
+    "felt":null,
+    "cdi":null,
+    "mmi":null,
+    "alert":null,
+    "status":"automatic",
+    "tsunami":0,
+    "sig":46,
+    "net":"nc",
+    "code":"73723715",
+    "ids":",nc73723715,nn00837875,",
+    "sources":",nc,nn,",
+    "types":",nearby-cities,origin,phase-data,scitech-link,",
+    "nst":6,
+    "dmin":0.0852,
+    "rms":0.02,
+    "gap":99,
+    "magType":"md",
+    "type":"earthquake",
+    "title":"M 1.7 - 4km E of Truckee, CA"
+    },
+    "geometry":
+    {
+      "type":"Point",
+      "coordinates":[-120.1395035,39.3221664,8.5]
+    },
+    "id":"nc73723715"}]
+    }

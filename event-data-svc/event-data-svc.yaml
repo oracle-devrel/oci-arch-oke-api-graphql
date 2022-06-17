@@ -1,0 +1,17 @@
+# Copyright(c) 2022, Oracle and / or its affiliates.
+# All rights reserved. The Universal Permissive License(UPL), Version 1.0 as shown at http: // oss.oracle.com/licenses/upl
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-data-svc  
+  labels:
+    app: event-data-svc
+    role: graphql-resolver
+spec:
+  selector:
+    app: event-data-pod
+  ports:
+  - name: event-data-port
+    protocol: TCP
+    port: 8080
+    targetPort: 8080
