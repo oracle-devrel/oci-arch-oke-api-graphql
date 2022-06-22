@@ -1,7 +1,7 @@
 {
   "name": "graph-svr",
   "version": "1.0.0",
-  "description": "packages for this service",
+  "description": "packages needed for this service",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -18,5 +18,5 @@
     "graphql-tools": "^8.2.8"
   },
   "author": "Phil Wilkins",
-  "license": "ISC"
+  "license": "MIT"
 }
