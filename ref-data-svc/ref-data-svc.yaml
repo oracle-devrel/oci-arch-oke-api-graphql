@@ -1,0 +1,17 @@
+# Copyright(c) 2022, Oracle and / or its affiliates.
+# All rights reserved. The Universal Permissive License(UPL), Version 1.0 as shown at http: // oss.oracle.com/licenses/upl
+apiVersion: v1
+kind: Service
+metadata:
+  name: ref-data-svc  
+  labels:
+    app: ref-data-svc
+    role: graphql-resolver
+spec:
+  selector:
+    app: ref-data-pod
+  ports:
+  - name: ref-data-port
+    protocol: TCP
+    port: 8090
+    targetPort: 8090

@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "d548eba2-0975-4f81-826a-f17002a5feb9",
+		"name": "GraphQLSvr-API-GW",
+		"description": "# Collection Description\n\nThis illustrates placing a GraphQL request that passes through the API gateway.\n\nFor this to work you will need to modify the URI to reflect your deployment's endpoint\n\n## Content Licensing\n\nCopyright(c) 2022, Oracle and / or its affiliates.\n\nAll rights reserved. The Universal Permissive License(UPL), Version 1.0 as shown at http: // oss.oracle.com/licenses/upl",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4322612"
+	},
+	"item": [
+		{
+			"name": "GQLEventDataQuery",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "add-token",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n    event(id: \"ak0225c24vhp\") {\r\n        place\r\n        time\r\n        eventType\r\n        id\r\n        title\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "129.80.154.115/svc/graphql",
+					"host": [
+						"129",
+						"80",
+						"154",
+						"115"
+					],
+					"path": [
+						"svc",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

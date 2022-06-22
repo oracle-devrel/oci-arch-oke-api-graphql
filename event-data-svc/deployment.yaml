@@ -1,0 +1,28 @@
+# Copyright(c) 2022, Oracle and / or its affiliates.
+# All rights reserved. The Universal Permissive License(UPL), Version 1.0 as shown at http: // oss.oracle.com/licenses/upl
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-data-deploy
+  labels:
+    app: event-data-pod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: event-data-pod
+  template:
+    metadata:
+      name: event-data-pod
+      labels:
+        app: event-data-pod
+    spec:
+      containers:
+      - name: event-data-svc
+        image: iad.ocir.io/ociobenablement/event-data-svc:latest
+        #ToDo Need to make this configurable OR push resources to a universal repo like Docker or GitHub
+        ports:
+        - containerPort: 8080    
+          name: event-data-web
+      imagePullSecrets:
+      - name: ocirsecret

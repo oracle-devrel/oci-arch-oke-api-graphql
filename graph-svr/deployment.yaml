@@ -1,0 +1,46 @@
+# Copyright(c) 2022, Oracle and / or its affiliates.
+# All rights reserved. The Universal Permissive License(UPL), Version 1.0 as shown at http: // oss.oracle.com/licenses/upl
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: graphql-svr-deploy
+  labels:
+    app: graphql-svr-pod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: graphql-svr-pod
+  template:
+    metadata:
+      name: graphql-svr-pod
+      labels:
+        app: graphql-svr-pod
+    spec:
+      containers:
+      - name: graphql-svr-svc
+        image: iad.ocir.io/ociobenablement/graphql-svr-svc:latest 
+        #ToDo Need to make this configurable OR push resources to a universal repo like Docker or GitHub
+        ports:
+        - containerPort: 80    
+          name: graph-svr-web
+        #livenessProbe:
+        #  exec:
+        #    command:
+        #    - /app/probe.sh
+        #    - liveness
+        #  initialDelaySeconds: 60
+        #  periodSeconds: 60
+        #  timeoutSeconds: 20
+        #  failureThreshold: 5
+        #readinessProbe:
+        #  exec:
+        #    command:
+        #     - /app/probe.sh
+        #     - readiness
+        #  initialDelaySeconds: 60
+        #  periodSeconds: 60
+        #  timeoutSeconds: 20
+        #  failureThreshold: 5
+      imagePullSecrets:
+      - name: ocirsecret     
