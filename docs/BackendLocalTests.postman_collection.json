@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "a4b5f874-10c5-4cb7-8e3b-a8bd8220860e",
 		"name": "BackendLocalTests",
+		"description": "StartFragment\n\n# Collection Description\n\nThis allows us to test the backend services locally without the GraphQL layer. Ideal if you're extending the provided services\n\n## Content Licensing\n\nCopyright(c) 2022, Oracle and / or its affiliates.\n\nAll rights reserved. The Universal Permissive License(UPL), Version 1.0 as shown at http: // oss.oracle.com/licenses/upl\n\nEndFragment",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "4322612"
 	},

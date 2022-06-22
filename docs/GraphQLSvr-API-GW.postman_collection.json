@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "d548eba2-0975-4f81-826a-f17002a5feb9",
 		"name": "GraphQLSvr-API-GW",
+		"description": "# Collection Description\n\nThis illustrates placing a GraphQL request that passes through the API gateway.\n\nFor this to work you will need to modify the URI to reflect your deployment's endpoint\n\n## Content Licensing\n\nCopyright(c) 2022, Oracle and / or its affiliates.\n\nAll rights reserved. The Universal Permissive License(UPL), Version 1.0 as shown at http: // oss.oracle.com/licenses/upl",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "4322612"
 	},

@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "631768d5-2d8d-4184-8569-ab62289aac8a",
 		"name": "GraphQLSvr-direct",
+		"description": "# Collection Description\n\nThis collection allows you to invoke the different GraphQL mutators and resolvers without first passing through the API gateway.\n\nNormally this route would be closed. But for the purposes for this use case useful to see how the URL differs to when the gateway is in place.\n\nFor this to work on your deployment you will need to change the IP top redirect your own deployment.\n\nThese calls can also be modified to use the API Gateway by replacing the IP with the public endpoint of the gateway and the path becoming svc/graphql/\n\nEndFragment\n\n## Content Licensing\n\nCopyright(c) 2022, Oracle and / or its affiliates.\n\nAll rights reserved. The Universal Permissive License(UPL), Version 1.0 as shown at http: // oss.oracle.com/licenses/upl",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "4322612"
 	},
