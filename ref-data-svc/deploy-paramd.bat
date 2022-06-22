@@ -1,3 +1,6 @@
+rem # Copyright(c) 2022, Oracle and / or its affiliates.
+rem # All rights reserved. The Universal Permissive License(UPL), Version 1.0 as shown at http: // oss.oracle.com/licenses/upl
+
 rem build the docker image and set the tag
 # %1 is the username 
 # %2 is the token/password
