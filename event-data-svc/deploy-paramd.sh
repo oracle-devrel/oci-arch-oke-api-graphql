@@ -1,4 +1,8 @@
 #!/bin/sh
+
+# Copyright(c) 2022, Oracle and / or its affiliates.
+# All rights reserved. The Universal Permissive License(UPL), Version 1.0 as shown at http: // oss.oracle.com/licenses/upl
+
 # this is differs from the dos approach as running on a mac we need to use the docker buildx feature to build for amd64 rather than arm64
 #docker build -t event-data-svc:latest .  # this is for a local build
 # parameter $1 is the username 
